@@ -1,4 +1,4 @@
-package wicket.main;
+package wicket.lavalamp;
 
 import org.apache.wicket.Application;
 import org.apache.wicket.ajax.AbstractDefaultAjaxBehavior;
