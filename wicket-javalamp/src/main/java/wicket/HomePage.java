@@ -1,12 +1,13 @@
-package golan;
+package wicket;
 
-import golan.main.JQueryLavaLampBehavior;
 
 import org.apache.wicket.PageParameters;
 import org.apache.wicket.markup.html.CSSPackageResource;
 import org.apache.wicket.markup.html.JavascriptPackageResource;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.basic.Label;
+
+import wicket.main.JQueryLavaLampBehavior;
 
 /**
  * Homepage
