@@ -1,4 +1,4 @@
-package golan;
+package wicket.main;
 
 import org.mortbay.jetty.Connector;
 import org.mortbay.jetty.Server;

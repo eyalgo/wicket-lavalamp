@@ -1,7 +1,10 @@
-package golan;
+package wicket.main;
 
 import junit.framework.TestCase;
 import org.apache.wicket.util.tester.WicketTester;
+
+import wicket.HomePage;
+import wicket.WicketApplication;
 
 /**
  * Simple test using the WicketTester

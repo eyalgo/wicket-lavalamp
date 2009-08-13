@@ -1,4 +1,4 @@
-package golan.main;
+package wicket.main;
 
 import org.apache.wicket.Application;
 import org.apache.wicket.ajax.AbstractDefaultAjaxBehavior;
