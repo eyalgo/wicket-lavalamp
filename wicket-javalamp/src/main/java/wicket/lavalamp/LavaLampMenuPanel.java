@@ -15,13 +15,12 @@ import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.markup.html.panel.Panel;
-import org.apache.wicket.markup.html.resources.CompressedResourceReference;
 import org.apache.wicket.model.AbstractReadOnlyModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 
 @SuppressWarnings("serial")
-public class LavaLampMenuPanel extends Panel {
+public abstract class LavaLampMenuPanel extends Panel {
     public final String CSS_CLASS_NAME = "lavaLamp";
 
     public LavaLampMenuPanel(String id) {
@@ -68,19 +67,17 @@ public class LavaLampMenuPanel extends Panel {
     }
 
     /**
-     * This method should return the reference for the CSS that will be used.
-     * 
-     * @return ResourceReference
-     */
-    protected ResourceReference getCssResourceReference() {
-        return new CompressedResourceReference(LavaLampMenuPanel.class, "headlamp.js");
-    }
-
-    /**
      * @return String the class name in the CSS file
      */
     protected String getCssClassName() {
         return CSS_CLASS_NAME;
     }
+
+    /**
+     * This method should return the reference for the CSS that will be used.
+     * 
+     * @return ResourceReference
+     */
+    protected abstract ResourceReference getCssResourceReference();
 
 }
