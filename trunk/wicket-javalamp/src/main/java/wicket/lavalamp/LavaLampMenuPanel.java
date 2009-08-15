@@ -1,17 +1,14 @@
 package wicket.lavalamp;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.wicket.ResourceReference;
 import org.apache.wicket.behavior.AttributeAppender;
 import org.apache.wicket.behavior.HeaderContributor;
-import org.apache.wicket.markup.html.CSSPackageResource;
 import org.apache.wicket.markup.html.IHeaderContributor;
 import org.apache.wicket.markup.html.IHeaderResponse;
 import org.apache.wicket.markup.html.JavascriptPackageResource;
 import org.apache.wicket.markup.html.WebMarkupContainer;
-import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.markup.html.panel.Panel;
@@ -21,14 +18,19 @@ import org.apache.wicket.model.Model;
 
 @SuppressWarnings("serial")
 public abstract class LavaLampMenuPanel extends Panel {
-    public final String CSS_CLASS_NAME = "lavaLamp";
+    public LavaLampMenuPanel(String id, final List<MenuItem> linksList) {
+        this(id, new AbstractReadOnlyModel<List<MenuItem>>() {
+            @Override
+            public List<MenuItem> getObject() {
+                return linksList;
+            }
+        });
+    }
 
-    public LavaLampMenuPanel(String id) {
+    public LavaLampMenuPanel(String id, IModel<List<MenuItem>> linksModel) {
         super(id);
         // Add JQuery JS libraries
         add(new JQueryLavaLampBehavior());
-        add(CSSPackageResource.getHeaderContribution(JQueryLavaLampBehavior.class,
-                "lavalamp.css"));
         add(JavascriptPackageResource.getHeaderContribution(LavaLampMenuPanel.class,
                 "headlamp.js"));
         add(new HeaderContributor(new IHeaderContributor() {
@@ -41,27 +43,12 @@ public abstract class LavaLampMenuPanel extends Panel {
         final WebMarkupContainer listContainer = new WebMarkupContainer("list");
         listContainer.add(new AttributeAppender("class", true, new Model<String>(
                 getCssClassName()), " "));
-        IModel<List<String>> model = new AbstractReadOnlyModel<List<String>>() {
-
+        final ListView<MenuItem> lv = new ListView<MenuItem>("lavaLampMenu", linksModel) {
             @Override
-            public List<String> getObject() {
-                final List<String> result = new ArrayList<String>();
-                result.add("One Link");
-                result.add("Two Link");
-                result.add("Three Link");
-                result.add("Four Link");
-                return result;
+            protected void populateItem(ListItem<MenuItem> item) {
+                item.add(item.getModelObject());
             }
         };
-        ListView<String> lv = new ListView<String>("lavaLampMenu", model) {
-            @Override
-            protected void populateItem(ListItem<String> item) {
-                String caption = item.getModelObject();
-                item.add(new Label("caption", caption));
-            }
-
-        };
-
         listContainer.add(lv);
         add(listContainer);
     }
@@ -69,9 +56,7 @@ public abstract class LavaLampMenuPanel extends Panel {
     /**
      * @return String the class name in the CSS file
      */
-    protected String getCssClassName() {
-        return CSS_CLASS_NAME;
-    }
+    protected abstract String getCssClassName();
 
     /**
      * This method should return the reference for the CSS that will be used.
