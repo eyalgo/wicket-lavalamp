@@ -6,15 +6,17 @@ import org.apache.wicket.markup.html.resources.CompressedResourceReference;
 
 import wicket.lavalamp.LavaLampMenuPanel;
 
-public final class APage extends WebPage {
-    public APage() {
-        add(new LavaLampMenuPanel("lavalampMenu", Utils.newMenuList()) {
+public final class BPage extends WebPage {
+
+    public BPage() {
+        add(new LavaLampMenuPanel("lavalampMenu", Utils.newMenuListWithLinkStyles()) {
             private static final long serialVersionUID = 1L;
 
             @Override
             protected ResourceReference getCssResourceReference() {
-                return new CompressedResourceReference(APage.class, "apage.css");
+                return new CompressedResourceReference(BPage.class, "bpage.css");
             }
         });
     }
+
 }

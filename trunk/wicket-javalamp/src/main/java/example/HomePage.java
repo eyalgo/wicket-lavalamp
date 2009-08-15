@@ -17,8 +17,6 @@ import wicket.lavalamp.MenuItem;
  * Homepage
  */
 public class HomePage extends WebPage {
-    private final String CSS_CLASS_NAME = "lavaLamp";
-
     /**
      * Constructor that is invoked when page is invoked without a session.
      * 
@@ -42,11 +40,6 @@ public class HomePage extends WebPage {
             @Override
             protected ResourceReference getCssResourceReference() {
                 return new CompressedResourceReference(HomePage.class, "lavalamp.css");
-            }
-
-            @Override
-            protected String getCssClassName() {
-                return CSS_CLASS_NAME;
             }
         });
         // Add the simplest type of label
