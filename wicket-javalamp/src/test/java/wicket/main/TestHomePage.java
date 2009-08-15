@@ -3,8 +3,9 @@ package wicket.main;
 import junit.framework.TestCase;
 import org.apache.wicket.util.tester.WicketTester;
 
-import wicket.HomePage;
-import wicket.WicketApplication;
+import example.HomePage;
+import example.WicketApplication;
+
 
 /**
  * Simple test using the WicketTester
