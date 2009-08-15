@@ -18,6 +18,8 @@ import org.apache.wicket.model.Model;
 
 @SuppressWarnings("serial")
 public abstract class LavaLampMenuPanel extends Panel {
+    private final static String UL_CSS_CLASS = "lavaLamp";
+
     public LavaLampMenuPanel(String id, final List<MenuItem> linksList) {
         this(id, new AbstractReadOnlyModel<List<MenuItem>>() {
             @Override
@@ -41,22 +43,17 @@ public abstract class LavaLampMenuPanel extends Panel {
             }
         }));
         final WebMarkupContainer listContainer = new WebMarkupContainer("list");
-        listContainer.add(new AttributeAppender("class", true, new Model<String>(
-                getCssClassName()), " "));
+        listContainer.add(new AttributeAppender("class", true,
+                new Model<String>(UL_CSS_CLASS), " "));
         final ListView<MenuItem> lv = new ListView<MenuItem>("lavaLampMenu", linksModel) {
             @Override
             protected void populateItem(ListItem<MenuItem> item) {
-                item.add(item.getModelObject());
+             item.add(item.getModelObject());
             }
         };
         listContainer.add(lv);
         add(listContainer);
     }
-
-    /**
-     * @return String the class name in the CSS file
-     */
-    protected abstract String getCssClassName();
 
     /**
      * This method should return the reference for the CSS that will be used.
