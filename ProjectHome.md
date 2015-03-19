@@ -1,0 +1,1 @@
+This project is the integration of the Wicket framework and a cool JS library - the javalamp
